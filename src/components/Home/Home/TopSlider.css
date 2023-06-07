@@ -1,0 +1,11 @@
+.swiper-slide-bg {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 80vh;
+  }
+  

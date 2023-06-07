@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+@layer utilities {
+    .navbar {
+      @apply bg-transparent text-black  duration-300;
+    }
+  }
+  
