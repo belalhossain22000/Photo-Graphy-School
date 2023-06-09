@@ -15,6 +15,7 @@ import AddClasses from "../components/Instructors/AddClasses";
 import MyClasses from "../components/Instructors/MyClasses";
 import MySelectedClass from "../components/Student/MySelectedClass";
 import MyEnrolledClasses from "../components/Student/MyEnrolledClasses";
+import UpdateClasses from "../components/Instructors/UpdateClasses";
 
 
 export const router = createBrowserRouter([
@@ -71,6 +72,11 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard/my-enrolled-classes",
                 element:<MyEnrolledClasses></MyEnrolledClasses>
+            },
+            {
+                path: "/dashboard/update-classes/:id",
+                element:<UpdateClasses></UpdateClasses>,
+                loader:({params})=>fetch(`http://localhost:5000/classes/${params.id}`)
             },
 
         ]

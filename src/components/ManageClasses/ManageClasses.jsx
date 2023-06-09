@@ -39,6 +39,7 @@ const ManageClasses = () => {
     } catch (error) {
       console.error(error);
     }
+    alert('Status changed successfully');
   };
 
   //send feedback
@@ -111,7 +112,10 @@ const ManageClasses = () => {
                     </button>
                     <button
                       className="bg-red-500 hover:bg-red-600 mt-1 text-white px-4 py-1 mr-2 rounded disabled:opacity-50"
-                      onClick={() => handleDeny(classItem._id)}
+                      onClick={() =>{
+                        openModal(`modal-${classItem._id}`);
+                         handleDeny(classItem._id)
+                        }}
                     >
                       Deny
                     </button>
