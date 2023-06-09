@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const MyClasses = () => {
     const [classes, setClasses] = useState([]);
+    
 
     useEffect(() => {
         fetchClasses();
@@ -16,6 +17,8 @@ const MyClasses = () => {
             console.error(error);
         }
     };
+
+console.log(classes)
 
     const renderStatus = (status) => {
         if (status === 'pending') {

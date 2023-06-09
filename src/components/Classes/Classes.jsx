@@ -18,7 +18,7 @@ const Classes = () => {
     }, [user])
 
     const userType = dataUser.role
-    console.log(userType)
+    // console.log(userType)
     const handleSelectClass = (classItem) => {
         // console.log(classItem)
         if (!user) {
