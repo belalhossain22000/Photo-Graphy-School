@@ -13,7 +13,6 @@ function RegistrationPage() {
     const location = useLocation();
     const from = location?.state?.from?.pathname || "/";
     const navigate = useNavigate();
-
     const [error, setError] = useState("");
     const onSubmit = (data) => {
 
@@ -41,8 +40,20 @@ function RegistrationPage() {
                         photoURL: data.photoURL,
                     })
                         .then(() => {
-                            // Profile updated!
-                            // ...
+                            const savedUser = { email: data.email, name: data.name, image: data.photoURL }
+
+                            fetch(`http://localhost:5000/users`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(savedUser)
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    console.log(data);
+                                    // navigate("/")
+                                    alert('user updated successfully and saved successfully')
+                                })
+
                         })
                         .catch((error) => {
                             setError(error.message)

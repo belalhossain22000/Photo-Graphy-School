@@ -19,7 +19,7 @@ function LoginPage() {
         // console.log(data);
         setError("");
 
-       
+
         if ((data.email, data.password)) {
             loginUser(data.email, data.password)
                 .then((result) => {
@@ -43,8 +43,20 @@ function LoginPage() {
         googleLogin()
             .then((result) => {
                 const user = result.user;
-                navigate(from, { replace: true });
                 console.log(user);
+                const savedUser = { name: user.displayName, email: user.email, image: user.photoURL }
+                fetch("http://localhost:5000/users", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(savedUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+
+                    })
+
+
+                navigate(from, { replace: true });
             })
             .catch((error) => console.log(error.message));
     };

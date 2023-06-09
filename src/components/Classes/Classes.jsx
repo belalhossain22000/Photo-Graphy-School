@@ -1,55 +1,69 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import image from '../../assets/black-female-photographer-making-photos-modern-architecture_273443-2000.avif'
+import useGetData from '../../hooks/useGetData';
+import { AuthContext } from '../../Provider/AuthProvider';
 
-const classesData = [
-    {
-        id: 1,
-        name: 'Photography Basics',
-        instructor: 'John Doe',
-        seats: 10,
-        price: 99,
-        image: 'https://example.com/photography-basics.jpg',
-        approved: true,
-    },
-    {
-        id: 2,
-        name: 'Advanced Lighting Techniques',
-        instructor: 'Jane Smith',
-        seats: 0,
-        price: 149,
-        image: 'https://example.com/advanced-lighting.jpg',
-        approved: true,
-    },
-    // Add more classes here...
-];
 
-const Classes = ({ isLoggedIn, userType }) => {
-    const handleSelectClass = (classId) => {
-        if (!isLoggedIn) {
+
+const Classes = () => {
+    const { user } = useContext(AuthContext)
+    // console.log(user?.email)
+
+    const { data, isLoading, error } = useGetData('http://localhost:5000/classes');
+    const [dataUser, setDataUser] = useState({})
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/${user?.email}`)
+            .then(res => res.json())
+            .then(data => setDataUser(data))
+    }, [user])
+
+    const userType = dataUser.role
+    console.log(userType)
+    const handleSelectClass = (classItem) => {
+        // console.log(classItem)
+        if (!user) {
             alert('Please log in before selecting the course.');
-        } else if (userType === 'admin' || userType === 'instructor') {
+            return
+        } else if (userType === 'Admin' || userType === 'Instructor') {
             alert('As an admin or instructor, you cannot select a course.');
-        } else {
-            // Handle selecting the class here
-            // ...
+            return
         }
+        const selectedClass = { ...classItem, email: user?.email }
+        fetch('http://localhost:5000/postSelectedClasses', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(selectedClass),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                alert('Successfully selected')
+                // Handle the response from the server
+                console.log('Selected classes posted:', data);
+            })
+            .catch((error) => {
+                console.error('Error posting selected classes:', error);
+            });
+
     };
 
     return (
         <div>
             <h1 className="text-2xl font-bold mb-4">Classes</h1>
-            {classesData.map((classItem) => (
+            {data?.map((classItem) => (
                 <div
-                    key={classItem.id}
-                    className={`p-4 mb-4 ${classItem.seats === 0 ? 'bg-red-200' : 'bg-white'}`}
+                    key={classItem?._id}
+                    className={`p-4 mb-4 ${classItem.availableSeats == 0 ? 'bg-red-200' : 'bg-white'}`}
                 >
-                    <img src={classItem.image} alt={classItem.name} className="mb-2" />
-                    <h2 className="text-lg font-bold">{classItem.name}</h2>
-                    <p className="mb-2">Instructor: {classItem.instructor}</p>
-                    <p className="mb-2">Available Seats: {classItem.seats}</p>
-                    <p className="mb-2">Price: {classItem.price}</p>
+                    <img src={image} alt={classItem.name} className="mb-2" />
+                    <h2 className="text-lg font-bold">{classItem?.className}</h2>
+                    <p className="mb-2">Instructor: {classItem?.instructorName}</p>
+                    <p className="mb-2">Available Seats: {classItem?.availableSeats}</p>
+                    <p className="mb-2">Price: {classItem?.price}</p>
                     <button
-                        disabled={classItem.seats === 0 || userType === 'admin' || userType === 'instructor'}
-                        onClick={() => handleSelectClass(classItem.id)}
+                        disabled={classItem.seats === 0 || userType === 'Admin' || userType === 'instructor'}
+                        onClick={() => handleSelectClass(classItem)}
                         className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
                     >
                         Select

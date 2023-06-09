@@ -9,37 +9,70 @@ import Home from "../components/Home/Home/Home";
 import InstructorsPage from "../components/InstructorsPage/InstructorsPage";
 import Classes from "../components/Classes/Classes";
 import Dashboard from "../components/Dashboard/Dashboard";
+import AllUsers from "../components/AllUsers/AllUsers";
+import ManageClasses from "../components/ManageClasses/ManageClasses";
+import AddClasses from "../components/Instructors/AddClasses";
+import MyClasses from "../components/Instructors/MyClasses";
+import MySelectedClass from "../components/Student/MySelectedClass";
+import MyEnrolledClasses from "../components/Student/MyEnrolledClasses";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main> </Main>,
-        children:[
+        children: [
             {
-                path:"/",
-                element:<Home></Home>
+                path: "/",
+                element: <Home></Home>
             },
             {
-                path:"/login",
-                element:<LoginPage></LoginPage>
+                path: "/login",
+                element: <LoginPage></LoginPage>
             },
             {
-                path:"/register",
-                element:<RegistrationPage></RegistrationPage>
+                path: "/register",
+                element: <RegistrationPage></RegistrationPage>
             },
             {
-                path:"/instructors",
-                element:<InstructorsPage></InstructorsPage>
+                path: "/instructors",
+                element: <InstructorsPage></InstructorsPage>
             },
             {
-                path:"/classes",
-                element:<Classes></Classes>
+                path: "/classes",
+                element: <Classes></Classes>
             }
         ]
     },
     {
-        path:"/dashboard",
-        element:<Dashboard></Dashboard>
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: "/dashboard/allusers",
+                element: <AllUsers></AllUsers>
+            },
+            {
+                path: "/dashboard/manage-classes",
+                element: <ManageClasses></ManageClasses>
+            },
+            {
+                path: "/dashboard/add-a-class",
+                element: <AddClasses></AddClasses>
+            },
+            {
+                path: "/dashboard/my-classes",
+                element:<MyClasses></MyClasses>
+            },
+            {
+                path: "/dashboard/my-selected-classes",
+                element:<MySelectedClass></MySelectedClass>
+            },
+            {
+                path: "/dashboard/my-enrolled-classes",
+                element:<MyEnrolledClasses></MyEnrolledClasses>
+            },
+
+        ]
     }
 ]);
