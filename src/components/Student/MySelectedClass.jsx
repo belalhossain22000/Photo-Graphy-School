@@ -26,6 +26,10 @@ const MySelectedClass = () => {
         }
     };
 
+    //handle payment 
+    const handlePayment = async (itemId) => {
+        console.log(itemId)
+    };
 
     return (
         <div className="overflow-x-auto ml-[18%]">
@@ -62,7 +66,7 @@ const MySelectedClass = () => {
                             <td className="border-b px-4 py-2">{item?.selectedClasses?.availableSeats}</td>
                             <td className="border-b px-4 py-2">{item?.selectedClasses?.price}</td>
                             <td className="border-b px-4 py-2">
-                                <button className="btn btn-ghost btn-xs">Payment</button>
+                                <button onClick={()=>handlePayment(item._id)} className="btn btn-ghost btn-xs">Payment</button>
                             </td>
                             <td className="border-b px-4 py-2">
                                 <button onClick={() => handleDelete(item._id)} className="btn btn-ghost btn-xs">Remove</button>

@@ -74,7 +74,7 @@ const Navbar = () => {
               )}
             </ul>
             <div className="flex items-center space-x-8">
-              <img className="h-8 w-8 rounded-full" src="profile.png" alt="User Profile Picture" />
+              <img className="h-8 w-8 rounded-full" src={user?.photoURL} alt="User Profile Picture" />
               {user ? (
                 <button onClick={handleLogOut} className="hover:text-gray-300 flex items-center justify-center gap-1">
                   Logout

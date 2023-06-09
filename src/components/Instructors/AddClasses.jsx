@@ -16,7 +16,8 @@ const AddClasses = () => {
                 ...data,
                 instructorName: user?.displayName,
                 instructorEmail: user?.email,
-                status: 'pending'
+                status: 'pending',
+                students:0
             };
 
 

@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import image from '../../../assets/black-female-photographer-making-photos-modern-architecture_273443-2000.avif'
 
 const PopularInstructors = () => {
+
+  const [instructor,setPopularInstructor] = useState()
+
+
+  //fetch data
+  useEffect(() => {
+    fetch('http://localhost:5000/classes')
+      .then(res => res.json())
+      .then(data => setPopularInstructor(data))
+  }, [])
+
+  console.log(instructor)
+
+
   // Dummy data for popular instructors
   const popularInstructors = [
     {

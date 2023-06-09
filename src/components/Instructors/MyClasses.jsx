@@ -76,12 +76,12 @@ const MyClasses = () => {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                     {classes.map((classItem) => (
-                        <tr key={classItem._id}>
+                        <tr key={classItem?._id}>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-900">{classItem.className}</div>
+                                <div className="text-sm text-gray-900">{classItem?.className}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm">{renderStatus(classItem.status)}</div>
+                                <div className="text-sm">{renderStatus(classItem?.status)}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
                                 <div className="text-sm text-center">{renderTotalEnrolledStudents(classItem?.students)}</div>

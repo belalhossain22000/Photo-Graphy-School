@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import image from "../../../assets/black-female-photographer-making-photos-modern-architecture_273443-2000.avif"
 
 const PopularClasses = () => {
-    // Dummy data for popular classes
+
+    const [popularClass, setPopularClasses] = useState()
+
+
+    //fetch data
+    useEffect(() => {
+        fetch('http://localhost:5000/classes')
+            .then(res => res.json())
+            .then(data => setPopularClasses(data))
+    }, [])
+
+    console.log(popularClass)
+
+
+
     const popularClasses = [
         {
             id: 1,
@@ -44,7 +58,7 @@ const PopularClasses = () => {
     ];
 
     // Sort classes based on the number of students (descending order)
-    const sortedClasses = popularClasses.sort((a, b) => b.students - a.students);
+    const sortedClasses = popularClasses.sort((a, b) => b?.students - a?.students);
 
     return (
         <section className="popular-classes py-12">
