@@ -46,11 +46,11 @@ const PopularInstructors = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="instructor-card-image">
-                <img src={user?.photoURL} alt={instructor.instructorName} onError={getPlaceholderImage} />
+                <img src={instructor?.instructorImage} alt={instructor?.instructorName} onError={getPlaceholderImage} />
               </div>
               <div className="instructor-card-content">
                 <motion.h3 className="text-xl font-bold" initial={{ x: -100 }} animate={{ x: 0 }} transition={{ duration: 0.5 }}>
-                  {instructor.instructorName}
+                  {instructor?.instructorName}
                 </motion.h3>
                 <motion.p
                   className="text-gray-600"
@@ -58,7 +58,7 @@ const PopularInstructors = () => {
                   animate={{ x: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  Students: {instructor.students}
+                  Students: {instructor?.students}
                 </motion.p>
               </div>
             </motion.div>

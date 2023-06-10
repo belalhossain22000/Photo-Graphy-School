@@ -10,6 +10,8 @@ function LoginPage() {
     const location = useLocation();
     const from = location?.state?.from?.pathname || "/";
 
+    const [showPassword, setShowPassword] = useState(false);
+
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -63,31 +65,34 @@ function LoginPage() {
 
 
     return (
-        <div className="flex flex-col items-center justify-center ">
-            <h1 className="text-3xl font-bold mb-8">Login</h1>
+        <div className="flex flex-col items-center justify-center  p-20  bg-gray-100 " style={{ backgroundImage: "url('https://th.bing.com/th/id/OIP.DrLmd_mojng-3K_Rcz6heQHaE8?pid=ImgDet&rs=1')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
+            <h1 className="text-4xl font-bold mb-8 text-white">Login</h1>
             <form className="w-full max-w-sm" onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
-                    <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+                    <label htmlFor="email" className="block text-white font-bold mb-2">
                         Email
                     </label>
                     <input
                         type="email"
                         id="email"
                         {...register('email', { required: 'Email is required' })}
-                        className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="appearance-none border rounded w-full  p-3  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                     {errors.email && <span className="text-red-500">{errors.email.message}</span>}
                 </div>
                 <div className="mb-4 relative">
-                    <label htmlFor="password" className="block text-gray-700 font-bold mb-2">
+                    <label htmlFor="password" className="block text-white font-bold mb-2">
                         Password
                     </label>
                     <input
-                        type="password"
+                        type={`${showPassword?'text':'password'}`}
                         id="password"
                         {...register('password', { required: 'Password is required' })}
-                        className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
+                    <button className='absolute right-3 bottom-2' onClick={() => setShowPassword(!showPassword)}>
+                        {showPassword ? 'Hide' : 'Show'} 
+                    </button>
                     <button
                         type="button"
                         className="absolute right-2 top-2 text-gray-600"
@@ -116,20 +121,20 @@ function LoginPage() {
                 <p className='text-red-600 py-4'>{error}</p>
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="bg-gray-700 w-full p-3 hover:bg-gray-500 text-white font-bold  rounded focus:outline-none focus:shadow-outline"
                 >
                     Sign In
                 </button>
             </form>
-            <p className="mt-4">
+            <p className="mt-4 text-white">
                 Don't have an account? <a href="/register" className="text-blue-500">Register here</a>
             </p>
             <div className="mt-4">
-                <p className="text-gray-700 mb-2">Or sign in with:</p>
+                <p className=" mb-2 text-white">Or sign in with:</p>
                 <div>
                     {/* Add social login buttons here */}
 
-                    <button onClick={googleLogins} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    <button onClick={googleLogins} className="bg-gray-200 hover:bg-gray-500 border-2 border-gray-700 text-gray-700 hover:text-gray-200 hover:border-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Google
                     </button>
                 </div>

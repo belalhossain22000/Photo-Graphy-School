@@ -8,10 +8,10 @@ const Footer = () => {
                 <div className="md:flex justify-center gap-28">
                     <div className="w-full lg:w-1/4 mb-6 lg:mb-0">
                         <div className="text-white text-xl font-semibold">
-                            <img src="/logo.png" alt="Website Logo" className="h-8 w-8 inline-block mr-2" />
+                            <img src="https://i.ibb.co/VVmCnC7/schoolhouse11.jpg" alt="Website Logo" className="h-8 w-8 inline-block mr-2" />
                             Photo School
                         </div>
-                        <p className="text-gray-400 mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p className="text-gray-400 mt-4">Welcome to Photo School, where we nurture your passion for photography and guide you towards capturing breathtaking moments. Join our community of aspiring photographers, and embark on a journey to unleash your creative vision through the lens.</p>
                     </div>
                     <div className="w-full lg:w-1/4 mb-6 lg:mb-0">
                         <h3 className="text-white font-semibold mb-4">Contact</h3>

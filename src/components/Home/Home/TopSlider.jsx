@@ -16,7 +16,7 @@ const TopSlider = () => {
                 className="swiper-container"
             >
                 <SwiperSlide>
-                    <div className="hero min-h-screen flex items-center justify-center">
+                    <div className="hero min-h-screen flex items-center justify-center ">
                         <div
                             className="hero-overlay bg-opacity-60 absolute inset-0"
                             style={{
@@ -30,7 +30,7 @@ const TopSlider = () => {
 
                         >
 
-                            <div className="hero-content text-center text-neutral-content flex justify-center items-center mt-[20%]">
+                            <div className="hero-content absolute bottom-0 h-[100vh] w-full bg-gray-500 p-10  opacity-70 text-center text-neutral-content flex justify-center items-center mt-[20%]">
                                 <div className="max-w-md">
                                     <h1 className="text-4xl text-white font-bold mb-6">Welcome to Photography School</h1>
                                     <h2 className="text-3xl text-white font-semibold mb-4">Unlock Your Creativity</h2>
@@ -60,7 +60,7 @@ const TopSlider = () => {
                             }}
                         >
 
-                            <div className="hero-content text-center text-neutral-content flex justify-center items-center mt-[20%]">
+                            <div className="hero-content h-[100vh] absolute bottom-0 w-full bg-gray-500 p-10  opacity-70 text-center text-neutral-content flex justify-center items-center mt-[20%]">
                                 <div className="max-w-md">
                                     <h2 className="text-4xl text-white font-semibold mb-4">Learn from Experts</h2>
                                     <p className="text-white mb-8">
@@ -88,7 +88,7 @@ const TopSlider = () => {
                             }}
                         >
 
-                            <div className="hero-content text-center text-neutral-content flex justify-center items-center mt-[20%]">
+                            <div className="hero-content h-[100vh] absolute bottom-0 w-full bg-gray-500 p-10  opacity-70  text-center text-neutral-content flex justify-center items-center mt-[20%]">
                                 <div className="max-w-md">
                                     <h2 className="text-4xl text-white font-semibold mb-4">Join Our Community</h2>
                                     <p className="text-white mb-8">

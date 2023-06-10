@@ -40,7 +40,7 @@ function RegistrationPage() {
                         photoURL: data.photoURL,
                     })
                         .then(() => {
-                            const savedUser = { email: data.email, name: data.name, image: data.photoURL }
+                            const savedUser = { email: data.email, name: data.name, image: data.photoURL,role:'student' }
 
                             fetch(`http://localhost:5000/users`, {
                                 method: 'POST',
@@ -74,9 +74,33 @@ function RegistrationPage() {
         // console.log(data);
     };
 
+    //google login
+
+    const googleLogins = () => {
+        googleLogin()
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
+                const savedUser = { name: user.displayName, email: user.email, image: user.photoURL }
+                fetch("http://localhost:5000/users", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(savedUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+
+                    })
+
+
+                navigate(from, { replace: true });
+            })
+            .catch((error) => console.log(error.message));
+    };
+
     return (
         <FormProvider {...methods}>
-            <div className="flex flex-col items-center justify-center my-12 ">
+            <div className="flex flex-col items-center justify-center p-20 " style={{ backgroundImage: "url('https://th.bing.com/th/id/OIP.GbMboU-krQvdIrfKgWpzXgHaFj?pid=ImgDet&rs=1')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
                 <h1 className="text-3xl font-bold mb-8">Registration</h1>
                 <form className="w-full max-w-sm" onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-4">
@@ -149,22 +173,22 @@ function RegistrationPage() {
                     </p>
                     <button
                         type="submit"
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-gray-700 w-full p-3 hover:bg-gray-500 text-white font-bold  rounded focus:outline-none focus:shadow-outline"
                     >
                         Sign Up
                     </button>
                 </form>
                 <p className="mt-4">
-                    Already have an account? <a href="/login" className="text-blue-500">Login here</a>
+                    Already have an account? <a href="/login" className="text-blue-700">Login here</a>
                 </p>
                 <div className="mt-4">
                     <p className="text-gray-700 mb-2">Or sign up with:</p>
                     <div>
                         {/* Add social login buttons here */}
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
+                        {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
                             Facebook
-                        </button>
-                        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        </button> */}
+                        <button onClick={googleLogins} className="bg-gray-200 hover:bg-gray-500 border-2 border-gray-700 text-gray-700 hover:text-gray-200 hover:border-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                             Google
                         </button>
                     </div>
