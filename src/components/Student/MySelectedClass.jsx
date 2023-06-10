@@ -8,6 +8,7 @@ const MySelectedClass = () => {
     const { user } = useContext(AuthContext)
     const [selectedClasses, setSelectedClasses] = useState([]);
     const { data, isLoading, error } = useGetData(`http://localhost:5000/selectedClasses/${user?.email}`);
+    const { data:updateDatas } = useGetData(`http://localhost:5000/classes`);
 
     useEffect(() => {
         setSelectedClasses(data);
@@ -17,6 +18,7 @@ const MySelectedClass = () => {
     //delete function
     const handleDelete = async (itemId) => {
         alert("are you sure you want to delete this item")
+
         try {
             await axios.delete(`http://localhost:5000/selectedClasses/${user?.email}/${itemId}`);
             const updatedData = selectedClasses.filter((item) => item._id !== itemId);
@@ -29,6 +31,7 @@ const MySelectedClass = () => {
     //handle payment 
     const handlePayment = async (itemId) => {
         console.log(itemId)
+
         try {
             const response = await fetch(`http://localhost:5000/makePayment/${itemId}`, {
                 method: 'PATCH',
@@ -39,8 +42,7 @@ const MySelectedClass = () => {
             });
 
             if (response.ok) {
-                const updatedData = selectedClasses.filter((item) => item._id !== itemId);
-                setSelectedClasses(updatedData);
+               
                 console.log('Payment successful');
                 alert('Payment successful');
             } else {
@@ -89,10 +91,10 @@ const MySelectedClass = () => {
                             <td className="border-b px-4 py-2">{item?.selectedClasses?.availableSeats}</td>
                             <td className="border-b px-4 py-2">{item?.selectedClasses?.price}</td>
                             <td className="border-b px-4 py-2">
-                                <button onClick={() => handlePayment(item?.selectedClasses?._id)} className="btn btn-ghost btn-xs">Payment</button>
+                                <button onClick={() => handlePayment(item?.selectedClasses?._id)}  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Payment</button>
                             </td>
                             <td className="border-b px-4 py-2">
-                                <button onClick={() => handleDelete(item._id)} className="btn btn-ghost btn-xs">Delete</button>
+                                <button onClick={() => handleDelete(item._id)}  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Delete</button>
                             </td>
                         </tr>
                     ))}

@@ -30,8 +30,9 @@ const PopularClasses = () => {
    
     
     return (
-        <section className="popular-classes py-12">
+        <section className="popular-classes ">
             <div className="container mx-auto">
+                <h1 className="text-4xl font-bold mb-2 text-center ">OUR</h1>
                 <h2 className="text-3xl font-bold mb-6 text-center ">Popular Classes</h2>
                 <motion.div
                     className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-3"

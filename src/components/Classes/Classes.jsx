@@ -53,23 +53,23 @@ const Classes = () => {
             <h1 className="text-2xl font-bold my-8">Classes</h1>
             <div className='grid grid-cols-3 gap-4'>
                 {data?.map((classItem) => (
-                    <div
-                        key={classItem?._id}
-                        className={`p-4 mb-4 ${classItem.availableSeats == 0 ? 'bg-red-200' : 'bg-white'}`}
+                    classItem.status=='approved'&&<div
+                    key={classItem?._id}
+                    className={`p-4 mb-4 ${classItem.availableSeats == 0 ? 'bg-red-200' : 'bg-white'}`}
+                >
+                    <img src={classItem?.classImage} alt={classItem.name} className="mb-2" />
+                    <h2 className="text-lg font-bold">{classItem?.className}</h2>
+                    <p className="mb-2">Instructor: {classItem?.instructorName}</p>
+                    <p className="mb-2">Available Seats: {classItem?.availableSeats}</p>
+                    <p className="mb-2">Price: {classItem?.price}</p>
+                    <button
+                        disabled={classItem.seats === 0 || userType === 'Admin' || userType === 'instructor'}
+                        onClick={() => handleSelectClass(classItem)}
+                        className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
                     >
-                        <img src={classItem?.classImage} alt={classItem.name} className="mb-2" />
-                        <h2 className="text-lg font-bold">{classItem?.className}</h2>
-                        <p className="mb-2">Instructor: {classItem?.instructorName}</p>
-                        <p className="mb-2">Available Seats: {classItem?.availableSeats}</p>
-                        <p className="mb-2">Price: {classItem?.price}</p>
-                        <button
-                            disabled={classItem.seats === 0 || userType === 'Admin' || userType === 'instructor'}
-                            onClick={() => handleSelectClass(classItem)}
-                            className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
-                        >
-                            Select
-                        </button>
-                    </div>
+                        Select
+                    </button>
+                </div>
                 ))}
             </div>
         </div>

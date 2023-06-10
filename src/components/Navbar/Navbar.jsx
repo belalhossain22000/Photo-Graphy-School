@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaHome, FaUserFriends, FaCalendarAlt, FaChartBar, FaBars, FaTimes } from "react-icons/fa";
+import { FaHome,FaMoon, FaUserFriends, FaCalendarAlt, FaChartBar, FaBars, FaTimes } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
-
+import { FiLogOut } from "react-icons/fi"
+import { TbLogin } from "react-icons/tb"
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logOut, toggleTheme } = useContext(AuthContext);
+  const { user, logOut, toggleTheme,theme } = useContext(AuthContext);
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -77,15 +78,17 @@ const Navbar = () => {
               <img className="h-8 w-8 rounded-full" src={user?.photoURL} alt="User Profile Picture" />
               {user ? (
                 <button onClick={handleLogOut} className="hover:text-gray-300 flex items-center justify-center gap-1">
+                  <FiLogOut className="h-6 w-6" />
                   Logout
                 </button>
               ) : (
-                <Link to="/login" className="hover:text-gray-300 flex items-center justify-center gap-1">
+                <Link to="/login" className="hover:text-gray-300 flex items-center justify-center ">
+                  <TbLogin className="h-6 w-6"/>
                   Login
                 </Link>
               )}
               <button onClick={toggleTheme} className="hover:text-gray-300 flex items-center justify-center gap-1">
-                moode
+               <FaMoon className="h-6 w-6"/> 
               </button>
             </div>
           </div>

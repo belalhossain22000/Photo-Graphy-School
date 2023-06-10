@@ -5,6 +5,7 @@ import PopularInstructors from './PopularInstructors';
 import ExtraSection from './ExtraSection';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import PhotoGraphyPrograss from './PhotoGraphyPrograss/PhotoGraphyPrograss';
 
 
 const Home = () => {
@@ -16,7 +17,7 @@ const Home = () => {
             <TopSlider></TopSlider>
             <PopularClasses></PopularClasses>
             <PopularInstructors></PopularInstructors>
-            <ExtraSection></ExtraSection>
+           <PhotoGraphyPrograss></PhotoGraphyPrograss>
         </div>
     );
 };
