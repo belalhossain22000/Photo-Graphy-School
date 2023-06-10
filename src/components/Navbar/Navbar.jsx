@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaHome,FaMoon, FaUserFriends, FaCalendarAlt, FaChartBar, FaBars, FaTimes } from "react-icons/fa";
+import { FaHome, FaMoon, FaUserFriends, FaCalendarAlt, FaChartBar, FaBars, FaTimes } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FiLogOut } from "react-icons/fi"
 import { TbLogin } from "react-icons/tb"
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logOut, toggleTheme,theme } = useContext(AuthContext);
+  const { user, logOut, toggleTheme, theme } = useContext(AuthContext);
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -41,8 +41,8 @@ const Navbar = () => {
         <div className="flex items-center justify-between  h-16">
           <div className="flex items-center">
             <Link to="/" className="flex flex-shrink-0">
-              <img className="h-8 w-8" src="https://th.bing.com/th/id/R.8fe1554c1f95d7c675dc4613219484ad?rik=eNm6NFblJThsWA&riu=http%3a%2f%2fwww.clipartbest.com%2fcliparts%2faie%2f6MB%2faie6MBqeT.jpg&ehk=RuHN4JfrE28WljoYQNf%2f%2bFvOsoaiOJWL3aPxuuYPAr0%3d&risl=&pid=ImgRaw&r=0" alt="Website Logo" />
-              <span className="font-semibold ml-2">Photo School</span>
+              <img className="h-10 w-10 rounded-full" src="https://i.ibb.co/VVmCnC7/schoolhouse11.jpg" alt="Website Logo" />
+              <span className="font-semibold text-2xl ml-2">Photo School</span>
             </Link>
           </div>
           <div className="hidden md:flex md:items-center md:space-x-8">
@@ -75,20 +75,20 @@ const Navbar = () => {
               )}
             </ul>
             <div className="flex relative items-center space-x-8">
-              <img className="h-8 w-8 rounded-full" src={user?.photoURL} alt="User Profile Picture" />
               {user ? (
-                <button onClick={handleLogOut} className="hover:text-gray-300 flex items-center justify-center gap-1">
-                  <FiLogOut className="h-6 w-6" />
-                  Logout
-                </button>
+                <><img className="h-8 w-8 rounded-full" src={user?.photoURL} alt="User Profile Picture" />
+                  <button onClick={handleLogOut} className="hover:text-gray-300 flex items-center justify-center gap-1">
+                    <FiLogOut className="h-6 w-6" />
+                    Logout
+                  </button></>
               ) : (
                 <Link to="/login" className="hover:text-gray-300 flex items-center justify-center ">
-                  <TbLogin className="h-6 w-6"/>
+                  <TbLogin className="h-6 w-6" />
                   Login
                 </Link>
               )}
               <button onClick={toggleTheme} className="hover:text-gray-300 flex items-center justify-center gap-1">
-               <FaMoon className="h-6 w-6"/> 
+                <FaMoon className="h-6 w-6" />
               </button>
             </div>
           </div>

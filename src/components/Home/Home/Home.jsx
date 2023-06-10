@@ -12,7 +12,7 @@ const Home = () => {
     const { theme } = useContext(AuthContext)
 
     return (
-        <div className={`${theme === 'light' ? 'bg-white' : 'bg-black'} text-${theme === 'light' ? 'black' : 'white'}`}>
+        <div className={` ${theme === 'light' ? 'bg-white' : 'bg-black'} text-${theme === 'light' ? 'black' : 'white'}`}>
 
             <TopSlider></TopSlider>
             <PopularClasses></PopularClasses>
