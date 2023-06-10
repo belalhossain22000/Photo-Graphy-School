@@ -19,7 +19,7 @@ const MySelectedClass = () => {
         alert("are you sure you want to delete this item")
         try {
             await axios.delete(`http://localhost:5000/selectedClasses/${user?.email}/${itemId}`);
-             const updatedData = selectedClasses.filter((item) => item._id !== itemId);
+            const updatedData = selectedClasses.filter((item) => item._id !== itemId);
             setSelectedClasses(updatedData);
         } catch (error) {
             console.error(error);
@@ -29,7 +29,30 @@ const MySelectedClass = () => {
     //handle payment 
     const handlePayment = async (itemId) => {
         console.log(itemId)
+        try {
+            const response = await fetch(`http://localhost:5000/makePayment/${itemId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                // body: JSON.stringify({ itemId })
+            });
+
+            if (response.ok) {
+                const updatedData = selectedClasses.filter((item) => item._id !== itemId);
+                setSelectedClasses(updatedData);
+                console.log('Payment successful');
+                alert('Payment successful');
+            } else {
+                console.log('Payment failed');
+                alert('Payment failed');
+            }
+        } catch (error) {
+            console.log('Error:', error);
+        }
+
     };
+
 
     return (
         <div className="overflow-x-auto ml-[18%]">
@@ -66,10 +89,10 @@ const MySelectedClass = () => {
                             <td className="border-b px-4 py-2">{item?.selectedClasses?.availableSeats}</td>
                             <td className="border-b px-4 py-2">{item?.selectedClasses?.price}</td>
                             <td className="border-b px-4 py-2">
-                                <button onClick={()=>handlePayment(item._id)} className="btn btn-ghost btn-xs">Payment</button>
+                                <button onClick={() => handlePayment(item?.selectedClasses?._id)} className="btn btn-ghost btn-xs">Payment</button>
                             </td>
                             <td className="border-b px-4 py-2">
-                                <button onClick={() => handleDelete(item._id)} className="btn btn-ghost btn-xs">Remove</button>
+                                <button onClick={() => handleDelete(item._id)} className="btn btn-ghost btn-xs">Delete</button>
                             </td>
                         </tr>
                     ))}
