@@ -17,13 +17,14 @@ import MySelectedClass from "../components/Student/MySelectedClass";
 import MyEnrolledClasses from "../components/Student/MyEnrolledClasses";
 import UpdateClasses from "../components/Instructors/UpdateClasses";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main> </Main>,
-        errorElement:<ErrorPage></ErrorPage>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
@@ -49,7 +50,7 @@ export const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: "/dashboard/allusers",
@@ -65,20 +66,20 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/my-classes",
-                element:<MyClasses></MyClasses>
+                element: <MyClasses></MyClasses>
             },
             {
                 path: "/dashboard/my-selected-classes",
-                element:<MySelectedClass></MySelectedClass>
+                element: <MySelectedClass></MySelectedClass>
             },
             {
                 path: "/dashboard/my-enrolled-classes",
-                element:<MyEnrolledClasses></MyEnrolledClasses>
+                element: <MyEnrolledClasses></MyEnrolledClasses>
             },
             {
                 path: "/dashboard/update-classes/:id",
-                element:<UpdateClasses></UpdateClasses>,
-                loader:({params})=>fetch(`http://localhost:5000/classes/${params.id}`)
+                element: <UpdateClasses></UpdateClasses>,
+                loader: ({ params }) => fetch(`http://localhost:5000/classes/${params.id}`)
             },
 
         ]
