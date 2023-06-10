@@ -16,12 +16,14 @@ import MyClasses from "../components/Instructors/MyClasses";
 import MySelectedClass from "../components/Student/MySelectedClass";
 import MyEnrolledClasses from "../components/Student/MyEnrolledClasses";
 import UpdateClasses from "../components/Instructors/UpdateClasses";
+import ErrorPage from "../components/ErrorPage/ErrorPage";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main> </Main>,
+        errorElement:<ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",

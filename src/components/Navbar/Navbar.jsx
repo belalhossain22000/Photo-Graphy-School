@@ -5,7 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, toggleTheme } = useContext(AuthContext);
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -73,7 +73,7 @@ const Navbar = () => {
                 </li>
               )}
             </ul>
-            <div className="flex items-center space-x-8">
+            <div className="flex relative items-center space-x-8">
               <img className="h-8 w-8 rounded-full" src={user?.photoURL} alt="User Profile Picture" />
               {user ? (
                 <button onClick={handleLogOut} className="hover:text-gray-300 flex items-center justify-center gap-1">
@@ -84,6 +84,9 @@ const Navbar = () => {
                   Login
                 </Link>
               )}
+              <button onClick={toggleTheme} className="hover:text-gray-300 flex items-center justify-center gap-1">
+                moode
+              </button>
             </div>
           </div>
           <div className="-mr-2 flex md:hidden">

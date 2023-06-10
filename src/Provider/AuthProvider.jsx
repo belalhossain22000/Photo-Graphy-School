@@ -61,6 +61,13 @@ const AuthProvider = ({ children }) => {
         };
     }, []);
 
+//theme
+    const [theme, setTheme] = useState('light');
+
+    const toggleTheme = () => {
+        setTheme(theme === 'light' ? 'dark' : 'light');
+    }
+
 
     const authInfo = {
         user,
@@ -72,6 +79,9 @@ const AuthProvider = ({ children }) => {
 
         loading,
         setLoading,
+        theme,
+        setTheme,
+        toggleTheme
 
     }
     return (

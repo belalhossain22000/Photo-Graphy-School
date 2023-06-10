@@ -84,10 +84,10 @@ const MyClasses = () => {
                                 <div className="text-sm">{renderStatus(classItem?.status)}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-center">{renderTotalEnrolledStudents(classItem?.students)}</div>
+                                <div className="text-sm text-center">{(classItem?.students)}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm">{renderFeedback(classItem.status, classItem?.feedback)}</div>
+                                <div className="text-sm">{(classItem?.status, classItem?.feedback)}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
                                 <Link to={`/dashboard/update-classes/${classItem?._id}`}><button className="text-blue-600 hover:text-blue-900">
