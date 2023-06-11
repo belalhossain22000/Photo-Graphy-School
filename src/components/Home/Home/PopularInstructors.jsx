@@ -1,33 +1,38 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import image from '../../../assets/black-female-photographer-making-photos-modern-architecture_273443-2000.avif'
 import { AuthContext } from '../../../Provider/AuthProvider';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
 const PopularInstructors = () => {
-  const {user}=useContext(AuthContext)
+  const { user } = useContext(AuthContext)
 
-  const [instructor,setInstructor] = useState([])
-
-
-  //fetch data
-  useEffect(() => {
-    fetch('http://localhost:5000/classes')
-      .then(res => res.json())
-      .then(data => setInstructor(data))
-  }, [])
-
-  console.log(instructor)
+  const [isLoading, setIsLoading] = useState(true);
+  const [instructor, setInstructor] = useState([]);
 
 
- 
+  //use tanstack query to fetch
+  const { refetch, data: PoInstructor = [] } = useQuery({
+    enabled: !isLoading,
+    queryKey: ['classes'],
+    queryFn: async () => {
+      const res = await axios.get(`http://localhost:5000/classes`)
+      // setIsLoading(false)
+      return res.data;
+    },
+  });
+
   // Sort instructors based on the number of students (descending order)
-  const sortedInstructors = instructor.sort((a, b) => b.students - a.students);
+  const sortedInstructors = PoInstructor.sort((a, b) => b.students - a.students);
+console.log(sortedInstructors)
+  useEffect(() => {
+    setInstructor(sortedInstructors);
+    setIsLoading(false)
+  }, [sortedInstructors]);
 
-  // Function to get a placeholder image if the instructor image is not available
-  const getPlaceholderImage = () => {
-    // Return the URL or path of a placeholder image
-    return 'placeholder-image.jpg';
-  };
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section className="popular-instructors py-12">
@@ -46,7 +51,7 @@ const PopularInstructors = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="instructor-card-image">
-                <img src={instructor?.instructorImage} alt={instructor?.instructorName} onError={getPlaceholderImage} />
+                <img src={instructor?.instructorImage} alt={instructor?.instructorName} />
               </div>
               <div className="instructor-card-content">
                 <motion.h3 className="text-xl font-bold" initial={{ x: -100 }} animate={{ x: 0 }} transition={{ duration: 0.5 }}>

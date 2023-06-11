@@ -1,36 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import image from "../../../assets/black-female-photographer-making-photos-modern-architecture_273443-2000.avif"
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios';
+
 
 const PopularClasses = () => {
 
-    const [popularClass, setPopularClasses] = useState([])
+    // const [popularClass, setPopularClasses] = useState([])
     const [isLoading, setIsLoading] = useState(true);
 
 
     //fetch data
-    useEffect(() => {
-        fetch('http://localhost:5000/classes',{headers:{
-            Authorization: `Bearer ${localStorage.getItem('access_token')}`
-        }})
-            .then(res => res.json())
-            .then(data => {
-                setPopularClasses(data)
-                setIsLoading(false);
-            })
-    }, [])
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/classes', {
+    //         headers: {
+    //             Authorization: `Bearer ${localStorage.getItem('access_token')}`
+    //         }
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setPopularClasses(data)
+    //             setIsLoading(false);
+    //         })
+    // }, [])
 
-    // console.log('from popular classes',popularClass)
-    const sortedClasses = popularClass.sort((a, b) => b?.students - a?.students);
+    //fetch data using tanstack query
+    const { refetch, data: PoClass = [] } = useQuery({
+        queryKey: ['classes'],
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/classes`)
+           setIsLoading(false)
+            return res.data;
+        },
+    })
+    // console.log('res from axios', PoClass)
 
-    if (isLoading) {
-        return <div>Loading...</div>; // Display a loading message or spinner
-    }
+    const sortedClasses = PoClass.sort((a, b) => b?.students - a?.students);
 
-    console.log('sorted classes from server data', sortedClasses)
+    // if (isLoading) {
+    //     return <div>Loading...</div>; // Display a loading message or spinner
+    // }
 
-   
-    
+
+
+
     return (
         <section className="popular-classes ">
             <div className="container mx-auto">
