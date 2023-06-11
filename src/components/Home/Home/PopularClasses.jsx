@@ -10,7 +10,9 @@ const PopularClasses = () => {
 
     //fetch data
     useEffect(() => {
-        fetch('http://localhost:5000/classes')
+        fetch('http://localhost:5000/classes',{headers:{
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`
+        }})
             .then(res => res.json())
             .then(data => {
                 setPopularClasses(data)
@@ -35,7 +37,7 @@ const PopularClasses = () => {
                 <h1 className="text-4xl font-bold mb-2 text-center ">OUR</h1>
                 <h2 className="text-3xl font-bold mb-6 text-center ">Popular Classes</h2>
                 <motion.div
-                    className="grid md:grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-3"
+                    className="grid mgrid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-3"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
@@ -48,7 +50,7 @@ const PopularClasses = () => {
                             whileTap={{ scale: 0.95 }}
                         >
                             <div className="class-card-image">
-                                <img src={image} alt={cls?.className} />
+                                <img src={cls?.classImage} alt={cls?.className} />
                             </div>
                             <div className="class-card-content">
                                 <h3 className="text-xl font-bold">{cls?.className}</h3>
