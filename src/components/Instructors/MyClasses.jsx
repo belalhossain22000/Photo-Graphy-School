@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const MyClasses = () => {
     const [classes, setClasses] = useState([]);
+    const {user}=useContext(AuthContext)
    
 
 
@@ -13,7 +15,7 @@ const MyClasses = () => {
 
     const fetchClasses = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/classes');
+            const response = await axios.get(`http://localhost:5000/classess/${user?.email}`);
             setClasses(response.data);
         } catch (error) {
             console.error(error);

@@ -31,7 +31,7 @@ const UpdateClasses = () => {
 
   return (
     <div className="w-[50%]  mx-auto p-6 bg-white rounded-lg shadow">
-            <h2 className="text-2xl font-bold mb-4">Add a Class</h2>
+            <h2 className="text-2xl font-bold mb-4">Update class</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
                     <label htmlFor="className" className="block text-sm font-medium mb-1">Class Name</label>

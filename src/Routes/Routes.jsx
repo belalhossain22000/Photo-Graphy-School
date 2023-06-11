@@ -18,6 +18,8 @@ import MyEnrolledClasses from "../components/Student/MyEnrolledClasses";
 import UpdateClasses from "../components/Instructors/UpdateClasses";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
+import CheckoutForm from "../components/CheckoutForm/CheckoutForm";
+import CheckOutModal from "../components/CheckoutForm/CheckOutModal";
 
 
 export const router = createBrowserRouter([
@@ -77,10 +79,16 @@ export const router = createBrowserRouter([
                 element: <MyEnrolledClasses></MyEnrolledClasses>
             },
             {
+                path: "/dashboard/checkout/:id",
+                element: <CheckOutModal></CheckOutModal>
+            },
+           
+            {
                 path: "/dashboard/update-classes/:id",
                 element: <UpdateClasses></UpdateClasses>,
                 loader: ({ params }) => fetch(`http://localhost:5000/classes/${params.id}`)
             },
+            
 
         ]
     }

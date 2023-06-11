@@ -3,13 +3,18 @@ import useGetData from '../../hooks/useGetData';
 
 import { AuthContext } from '../../Provider/AuthProvider';
 import axios from 'axios';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import CheckoutForm from '../CheckoutForm/CheckoutForm';
+import CheckOutModal from '../CheckoutForm/CheckOutModal';
+import { Link } from 'react-router-dom';
 
 const MySelectedClass = () => {
     const { user } = useContext(AuthContext)
     const [selectedClasses, setSelectedClasses] = useState([]);
     const { data, isLoading, error } = useGetData(`http://localhost:5000/selectedClasses/${user?.email}`);
-    const { data:updateDatas } = useGetData(`http://localhost:5000/classes`);
-
+    const { data: updateDatas } = useGetData(`http://localhost:5000/classes`);
+    // const stripePromise = loadStripe(`${import.meta.env.VITE_payment_gateway_pk}`);
     useEffect(() => {
         setSelectedClasses(data);
     }, [data]);
@@ -42,7 +47,7 @@ const MySelectedClass = () => {
             });
 
             if (response.ok) {
-               
+
                 console.log('Payment successful');
                 alert('Payment successful');
             } else {
@@ -54,6 +59,9 @@ const MySelectedClass = () => {
         }
 
     };
+
+
+
 
 
     return (
@@ -90,14 +98,20 @@ const MySelectedClass = () => {
                             <td className="border-b px-4 py-2">{item?.selectedClasses?.instructorName}</td>
                             <td className="border-b px-4 py-2">{item?.selectedClasses?.availableSeats}</td>
                             <td className="border-b px-4 py-2">{item?.selectedClasses?.price}</td>
+
                             <td className="border-b px-4 py-2">
-                                <button onClick={() => handlePayment(item?.selectedClasses?._id)}  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Payment</button>
+                               <Link to={`/dashboard/checkout/${item._id}`}> <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Payment</button></Link>
                             </td>
+
                             <td className="border-b px-4 py-2">
-                                <button onClick={() => handleDelete(item._id)}  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Delete</button>
+                                <button onClick={() => handleDelete(item._id)} className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Delete</button>
                             </td>
+
+
                         </tr>
+
                     ))}
+
                 </tbody>
             </table>
         </div>
