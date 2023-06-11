@@ -22,6 +22,7 @@ import CheckoutForm from "../components/CheckoutForm/CheckoutForm";
 import CheckOutModal from "../components/CheckoutForm/CheckOutModal";
 import InstructorPrivetRout from "./InstructorPrivetRout";
 import InstructorPrivateRoute from "./InstructorPrivetRout";
+import AdminPrivetRout from "./AdminPrivetRout";
 
 
 export const router = createBrowserRouter([
@@ -62,11 +63,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "/dashboard/allusers",
-                element: <AllUsers></AllUsers>
+                element: <AdminPrivetRout><AllUsers></AllUsers></AdminPrivetRout>
             },
             {
                 path: "/dashboard/manage-classes",
-                element: <ManageClasses></ManageClasses>
+                element: <AdminPrivetRout><ManageClasses></ManageClasses></AdminPrivetRout>
             },
             {
                 path: "/dashboard/add-a-class",
