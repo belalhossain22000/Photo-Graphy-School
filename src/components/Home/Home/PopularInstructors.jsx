@@ -24,7 +24,7 @@ const PopularInstructors = () => {
 
   // Sort instructors based on the number of students (descending order)
   const sortedInstructors = PoInstructor.sort((a, b) => b.students - a.students);
-console.log(sortedInstructors)
+// console.log(sortedInstructors)
   useEffect(() => {
     setInstructor(sortedInstructors);
     setIsLoading(false)

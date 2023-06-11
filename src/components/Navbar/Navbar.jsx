@@ -4,12 +4,14 @@ import { FaHome, FaMoon, FaUserFriends, FaCalendarAlt, FaChartBar, FaBars, FaTim
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FiLogOut } from "react-icons/fi"
 import { TbLogin } from "react-icons/tb"
+import useGetData from "../../hooks/useGetData";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logOut, toggleTheme, theme } = useContext(AuthContext);
 
   const [scrollPosition, setScrollPosition] = useState(0);
-
+  const { data } = useGetData(`http://localhost:5000/users/${user?.email}`)
+  console.log(data)
   useEffect(() => {
     const handleScroll = () => {
       const position = window.pageYOffset;
@@ -42,7 +44,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex flex-shrink-0">
               <img className="h-10 w-10 rounded-full" src="https://i.ibb.co/VVmCnC7/schoolhouse11.jpg" alt="Website Logo" />
-              <span className="font-semibold text-2xl ml-2">Photo School</span>
+              <span className="font-semibold text-2xl ml-2">Photography School</span>
             </Link>
           </div>
           <div className="hidden md:flex md:items-center md:space-x-8">
@@ -67,7 +69,7 @@ const Navbar = () => {
               </li>
               {user && (
                 <li>
-                  <Link to="/dashboard" className="hover:text-gray-300 flex items-center justify-center gap-1">
+                  <Link to={data?.role == 'Admin' ? '/dashboard/manage-classes' : data?.role == 'Instructor' ? "/dashboard/my-classes" : "/dashboard/my-selected-classes"} className="hover:text-gray-300 flex items-center justify-center gap-1">
                     <FaChartBar className="h-6 w-6" />
                     <span>Dashboard</span>
                   </Link>
