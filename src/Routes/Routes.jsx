@@ -20,6 +20,8 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
 import CheckoutForm from "../components/CheckoutForm/CheckoutForm";
 import CheckOutModal from "../components/CheckoutForm/CheckOutModal";
+import InstructorPrivetRout from "./InstructorPrivetRout";
+import InstructorPrivateRoute from "./InstructorPrivetRout";
 
 
 export const router = createBrowserRouter([
@@ -47,6 +49,10 @@ export const router = createBrowserRouter([
             {
                 path: "/classes",
                 element: <Classes></Classes>
+            },
+            {
+                path: "/pv",
+                element: <InstructorPrivetRout></InstructorPrivetRout>
             }
         ]
     },
@@ -64,11 +70,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/add-a-class",
-                element: <AddClasses></AddClasses>
+                element: <InstructorPrivateRoute><AddClasses></AddClasses></InstructorPrivateRoute>
             },
             {
                 path: "/dashboard/my-classes",
-                element: <MyClasses></MyClasses>
+                element: <InstructorPrivetRout><MyClasses></MyClasses></InstructorPrivetRout>
             },
             {
                 path: "/dashboard/my-selected-classes",
@@ -82,13 +88,13 @@ export const router = createBrowserRouter([
                 path: "/dashboard/checkout/:id",
                 element: <CheckOutModal></CheckOutModal>
             },
-           
+
             {
                 path: "/dashboard/update-classes/:id",
-                element: <UpdateClasses></UpdateClasses>,
+                element: <InstructorPrivateRoute><UpdateClasses></UpdateClasses></InstructorPrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/classes/${params.id}`)
             },
-            
+
 
         ]
     }
