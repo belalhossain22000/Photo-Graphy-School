@@ -5,7 +5,9 @@ const AllUsers = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/users')
+    fetch('http://localhost:5000/users',{headers:{
+      Authorization: `Bearer ${localStorage.getItem('access_token')}`
+    }})
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
@@ -39,7 +41,7 @@ const AllUsers = () => {
         alert('Instructor role created successfully');
 
         // Update the user's role in the array
-        const updatedUsers = users.map((user) =>
+        const updatedUsers = users?.map((user) =>
           user._id === id ? { ...user, role: 'Instructor' } : user
         );
 
@@ -68,7 +70,7 @@ const AllUsers = () => {
               </tr>
             </thead>
             <tbody>
-              {users?.map((user, index) => (
+              {users && users?.map((user, index) => (
                 <tr key={user?._id}>
                   <td className="border-b px-4 py-2">{index + 1}</td>
                   <td className="border-b px-4 py-2">{user?.name}</td>
