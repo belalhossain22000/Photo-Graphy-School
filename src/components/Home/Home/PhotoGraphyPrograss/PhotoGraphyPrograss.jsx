@@ -5,7 +5,7 @@ const PhotoGraphyPrograss = () => {
   return (
     <div className="container mx-auto py-10">
       <h2 className="text-5xl text-center font-bold p-4 mb-8">---Your Skills After a Month---</h2>
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-2 gap-6">
         <ProgressCard title="Fashion" initialPercentage={0} targetPercentage={75} />
         <ProgressCard title="Peoples" initialPercentage={0} targetPercentage={75} />
         <ProgressCard title="Nature" initialPercentage={0} targetPercentage={65} />

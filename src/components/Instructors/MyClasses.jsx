@@ -41,17 +41,17 @@ const MyClasses = () => {
         return null;
     };
 
-    const renderTotalEnrolledStudents = (students) => {
-        if (students?.length > 0) {
-            return students?.length;
-        }
-        return 0;
-    };
+    // const renderTotalEnrolledStudents = (students) => {
+    //     if (students?.length > 0) {
+    //         return students?.length;
+    //     }
+    //     return 0;
+    // };
 
-    const handleUpdateClass = (classId) => {
-        // Handle update button click
-        console.log(`Update class: ${classId}`);
-    };
+    // const handleUpdateClass = (classId) => {
+    //     // Handle update button click
+    //     console.log(`Update class: ${classId}`);
+    // };
 
     return (
         <div className='ml-[18%]'>

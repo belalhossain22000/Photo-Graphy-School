@@ -34,7 +34,7 @@ const PopularInstructors = () => {
       <div className="container mx-auto">
         <h2 className="text-3xl font-bold mb-2 text-center">OUR</h2>
         <h2 className="text-3xl font-bold mb-6 text-center">Popular Instructors</h2>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3">
+        <div className="grid  gap-4 md:grid-cols-3 lg:grid-cols-3">
           {sortedInstructors?.slice(0, 6)?.map((instructor) => (
             <motion.div
               key={instructor?._id}

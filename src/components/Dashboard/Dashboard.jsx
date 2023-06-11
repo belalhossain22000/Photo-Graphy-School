@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { FaHome, FaCalendarAlt, FaWallet, FaShoppingCart } from 'react-icons/fa';
-import { ImMenu } from 'react-icons/im';
-import { BsShop } from 'react-icons/bs';
+import { FaHome, FaCalendarAlt,FaUserFriends,FaAd } from 'react-icons/fa';
+import { GrUserManager } from 'react-icons/gr';
+import { MdManageHistory } from 'react-icons/md';
 import useGetData from '../../hooks/useGetData';
 import { AuthContext } from '../../Provider/AuthProvider';
 
@@ -26,23 +26,23 @@ const userType=data.role
                     {
                         userType=='Admin' ? <>
                             <li className='text-3xl font-semibold text-center'><Link className='flex gap-1 items-center'> <FaHome /> Admin Home</Link></li>
-                            <li><Link to="/dashboard/manage-classes">Manage Classes</Link></li>
-                            <li><Link to="/dashboard/allusers">Manage Users  </Link></li>
+                            <li><Link to="/dashboard/manage-classes" className='flex items-center gap-1 text-2xl'><GrUserManager/>Manage Classes</Link></li>
+                            <li><Link to="/dashboard/allusers" className='flex items-center gap-1 text-2xl'><MdManageHistory/>Manage Users  </Link></li>
                         </> : userType=="Instructor" ? <>
                             <li className='text-3xl font-semibold text-center'><Link className='flex gap-1 items-center'> <FaHome /> Instructors Home</Link></li>
-                            <li><Link to="/dashboard/add-a-class">Add a Class</Link></li>
-                            <li><Link to="/dashboard/my-classes">My Classes  </Link></li>
+                            <li><Link to="/dashboard/add-a-class" className='flex items-center gap-1 text-2xl'> <FaAd/>Add a Class</Link></li>
+                            <li><Link to="/dashboard/my-classes" className='flex items-center gap-1 text-2xl'><FaCalendarAlt/>My Classes  </Link></li>
                         </> : <>
                             <li className='text-3xl font-semibold text-center '><Link className='flex gap-1 items-center'> <FaHome /> Student Home</Link></li>
-                            <li><Link to="/dashboard/my-selected-classes">My Selected Classes</Link></li>
-                            <li><Link to="/dashboard/my-enrolled-classes">My Enrolled Classes  </Link></li>
+                            <li><Link to="/dashboard/my-selected-classes" className='flex items-center gap-1 text-2xl'> <FaCalendarAlt/>My Selected Classes</Link></li>
+                            <li><Link to="/dashboard/my-enrolled-classes" className='flex items-center gap-1 text-2xl'> <FaCalendarAlt/>My Enrolled Classes  </Link></li>
                         </>
                     }
 
                     <hr className="w-[80%] text-center" />
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/instructors">Instructors</Link></li>
-                    <li> <Link to="/classes">Classes</Link></li>
+                    <li><Link to="/" className='flex items-center gap-1 text-2xl'><FaHome></FaHome> Home</Link></li>
+                    <li><Link to="/instructors" className='flex items-center gap-1 text-2xl'><FaUserFriends/>Instructors</Link></li>
+                    <li> <Link to="/classes" className='flex items-center gap-1 text-2xl'> <FaCalendarAlt/>Classes</Link></li>
 
                 </ul>
 

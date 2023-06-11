@@ -35,7 +35,7 @@ const PopularClasses = () => {
                 <h1 className="text-4xl font-bold mb-2 text-center ">OUR</h1>
                 <h2 className="text-3xl font-bold mb-6 text-center ">Popular Classes</h2>
                 <motion.div
-                    className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-3"
+                    className="grid md:grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-3"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
