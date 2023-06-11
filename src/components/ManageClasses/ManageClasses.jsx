@@ -5,7 +5,13 @@ import { AuthContext } from '../../Provider/AuthProvider';
 
 const ManageClasses = () => {
   const { user } = useContext(AuthContext);
-  const { data } = useGetData('http://localhost:5000/classes');
+  const headers = {
+    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+  
+  };
+  
+
+  const { data } = useGetData('http://localhost:5000/classes',headers);
   const [classes, setClasses] = useState([]);
   const [feedback, setFeedback] = useState('');
 

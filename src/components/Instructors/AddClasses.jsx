@@ -20,7 +20,10 @@ const AddClasses = () => {
                 status: 'pending',
                 students:0
             };
-
+            // const headers = {
+            //     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+            //     'Content-Type': 'application/json',
+            //   };
 
             const response = await axios.post('http://localhost:5000/classes', classData);
             console.log(response.data);

@@ -32,7 +32,10 @@ const Classes = () => {
         fetch('http://localhost:5000/postSelectedClasses', {
             method: 'POST',
             headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+
                 'Content-Type': 'application/json',
+
             },
             body: JSON.stringify(selectedClass),
         })

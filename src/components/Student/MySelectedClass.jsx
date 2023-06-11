@@ -13,7 +13,7 @@ const MySelectedClass = () => {
     const { user } = useContext(AuthContext)
     const [selectedClasses, setSelectedClasses] = useState([]);
     const { data, isLoading, error } = useGetData(`http://localhost:5000/selectedClasses/${user?.email}`);
-    const { data: updateDatas } = useGetData(`http://localhost:5000/classes`);
+    // const { data: updateDatas } = useGetData(`http://localhost:5000/classes`);
     // const stripePromise = loadStripe(`${import.meta.env.VITE_payment_gateway_pk}`);
     useEffect(() => {
         setSelectedClasses(data);

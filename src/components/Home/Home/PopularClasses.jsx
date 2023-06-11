@@ -23,13 +23,23 @@ const PopularClasses = () => {
     //             setIsLoading(false);
     //         })
     // }, [])
+    const headers = {
+        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+
+    };
+
 
     //fetch data using tanstack query
     const { refetch, data: PoClass = [] } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/classes`)
-           setIsLoading(false)
+            const res = await axios.get(`http://localhost:5000/classes`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+
+                }
+            })
+            setIsLoading(false)
             return res.data;
         },
     })
