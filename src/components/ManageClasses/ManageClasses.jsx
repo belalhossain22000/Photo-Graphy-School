@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import useGetData from '../../hooks/useGetData';
 import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const ManageClasses = () => {
   const { user } = useContext(AuthContext);
@@ -27,7 +28,13 @@ const ManageClasses = () => {
           classItem._id === classId ? { ...classItem, status: 'approved' } : classItem
         )
       );
-      alert('Status changed successfully');
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'Status Updated Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
     } catch (error) {
       console.error(error);
     }
@@ -41,16 +48,28 @@ const ManageClasses = () => {
           classItem._id === classId ? { ...classItem, status: 'denied' } : classItem
         )
       );
-      alert('Status changed successfully');
+      // Swal.fire({
+      //   position: 'top-center',
+      //   icon: 'success',
+      //   title: 'Status Updated Successfully',
+      //   showConfirmButton: false,
+      //   timer: 1500
+      // })
     } catch (error) {
       console.error(error);
     }
-    alert('Status changed successfully');
+    Swal.fire({
+      position: 'top-center',
+      icon: 'success',
+      title: 'Status Updated Successfully',
+      showConfirmButton: false,
+      timer: 1500
+    })
   };
 
   //send feedback
   const sendFeedback = async (id) => {
-    alert("are you sure you want to send feedback")
+    
     try {
       await axios.patch(`https://server-nine-theta-40.vercel.app/classes/${id}`, {feedback:feedback});
       setClasses((prevClasses) =>
@@ -58,7 +77,13 @@ const ManageClasses = () => {
           classItem._id === id ? { ...classItem, feedback: feedback } : classItem
         )
       );
-      alert('feedback send successfully');
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'Feedback send Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
     } catch (error) {
       console.error(error);
     }

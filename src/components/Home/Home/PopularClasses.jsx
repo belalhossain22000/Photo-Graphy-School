@@ -23,10 +23,10 @@ const PopularClasses = () => {
     //             setIsLoading(false);
     //         })
     // }, [])
-    const headers = {
-        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+    // const headers = {
+    //     Authorization: `Bearer ${localStorage.getItem('access_token')}`,
 
-    };
+    // };
 
 
     //fetch data using tanstack query

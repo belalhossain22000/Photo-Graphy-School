@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
@@ -19,7 +20,13 @@ const AllUsers = () => {
       .patch(`https://server-nine-theta-40.vercel.app/users/${id}`, { role: 'Admin' })
       .then((response) => {
         console.log(response.data);
-        alert('Admin role created successfully');
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Role Updated Successfully',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
         // Update the user's role in the array
         const updatedUsers = users.map((user) =>
@@ -38,7 +45,13 @@ const AllUsers = () => {
       .patch(`https://server-nine-theta-40.vercel.app/users/${id}`, { role: 'Instructor' })
       .then((response) => {
         console.log(response.data);
-        alert('Instructor role created successfully');
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Role Updated Successfully',
+          showConfirmButton: false,
+          timer: 1500
+        })
 
         // Update the user's role in the array
         const updatedUsers = users?.map((user) =>

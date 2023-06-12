@@ -8,6 +8,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import CheckoutForm from '../CheckoutForm/CheckoutForm';
 import CheckOutModal from '../CheckoutForm/CheckOutModal';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const MySelectedClass = () => {
     const { user } = useContext(AuthContext)
@@ -22,7 +23,13 @@ const MySelectedClass = () => {
 
     //delete function
     const handleDelete = async (itemId) => {
-        alert("are you sure you want to delete this item")
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Delete successfully',
+            showConfirmButton: false,
+            timer: 1500
+          })
 
         try {
             await axios.delete(`https://server-nine-theta-40.vercel.app/selectedClasses/${user?.email}/${itemId}`);

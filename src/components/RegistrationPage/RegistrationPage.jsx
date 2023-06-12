@@ -4,6 +4,7 @@ import { useForm, FormProvider, useWatch } from 'react-hook-form';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { updateProfile } from 'firebase/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function RegistrationPage() {
     const methods = useForm();
@@ -50,8 +51,15 @@ function RegistrationPage() {
                                 .then(res => res.json())
                                 .then(data => {
                                     console.log(data);
+                                    Swal.fire({
+                                        position: 'top-center',
+                                        icon: 'success',
+                                        title: 'Your Create successfully',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                      })
                                     // navigate("/")
-                                    alert('user updated successfully and saved successfully')
+                                    // alert('user updated successfully and saved successfully')
                                 })
 
                         })

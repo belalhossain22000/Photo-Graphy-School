@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import axios from "axios";
 import { AuthContext } from '../../Provider/AuthProvider';
 import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const UpdateClasses = () => {
     const classesData=useLoaderData()
@@ -20,7 +21,13 @@ const UpdateClasses = () => {
         .then((response) => {
           console.log("Data successfully sent to the server:", response.data);
           // Perform any further actions after successful submission
-          alert('Successfully updated classes')
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Update classes successfully',
+            showConfirmButton: false,
+            timer: 1500
+          })
         })
         .catch((error) => {
           console.error("Error sending data to the server:", error);

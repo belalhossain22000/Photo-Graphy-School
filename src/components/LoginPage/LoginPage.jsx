@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 function LoginPage() {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -18,6 +19,7 @@ function LoginPage() {
 
 
     const onSubmit = (data) => {
+      
         // console.log(data);
         setError("");
 
@@ -26,6 +28,14 @@ function LoginPage() {
             loginUser(data.email, data.password)
                 .then((result) => {
                     console.log(result.user);
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'Login success',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                   
                     navigate(from, { replace: true });
                 })
                 .catch((error) => {
@@ -34,11 +44,6 @@ function LoginPage() {
                 });
         }
 
-
-
-
-
-
     };
 
     const googleLogins = () => {
@@ -46,7 +51,7 @@ function LoginPage() {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
-                const savedUser = { name: user.displayName, email: user.email, image: user.photoURL,role:'student' }
+                const savedUser = { name: user.displayName, email: user.email, image: user.photoURL, role: 'student' }
                 fetch("https://server-nine-theta-40.vercel.app/users", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -85,13 +90,13 @@ function LoginPage() {
                         Password
                     </label>
                     <input
-                        type={`${showPassword?'text':'password'}`}
+                        type={`${showPassword ? 'text' : 'password'}`}
                         id="password"
                         {...register('password', { required: 'Password is required' })}
                         className="appearance-none border rounded w-full p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
                     <button className='absolute right-3 bottom-2' onClick={() => setShowPassword(!showPassword)}>
-                        {showPassword ? 'Hide' : 'Show'} 
+                        {showPassword ? 'Hide' : 'Show'}
                     </button>
                     <button
                         type="button"

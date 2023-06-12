@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const AddClasses = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -29,7 +30,13 @@ const AddClasses = () => {
             console.log(response.data);
 
 
-            alert('Class created successfully');
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Class added successfully',
+                showConfirmButton: false,
+                timer: 1500
+              })
         } catch (error) {
             console.error(error);
 
