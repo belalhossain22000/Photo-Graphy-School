@@ -18,7 +18,7 @@ const CheckoutForm = ({ price }) => {
     const getClientSecret = async () => {
       if (price) {
         try {
-          const response = await axios.post("http://localhost:5000//create-payment-intent", { price });
+          const response = await axios.post("https://server-nine-theta-40.vercel.app//create-payment-intent", { price });
           if (isMounted) {
             setClientSecret(response.data.clientSecret);
           }

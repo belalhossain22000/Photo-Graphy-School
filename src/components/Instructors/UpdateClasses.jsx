@@ -16,7 +16,7 @@ const UpdateClasses = () => {
     
       // Send the form data to the server using Axios
       axios
-        .patch(`http://localhost:5000/classes/${classesData?._id}`, data)
+        .patch(`https://server-nine-theta-40.vercel.app/classes/${classesData?._id}`, data)
         .then((response) => {
           console.log("Data successfully sent to the server:", response.data);
           // Perform any further actions after successful submission

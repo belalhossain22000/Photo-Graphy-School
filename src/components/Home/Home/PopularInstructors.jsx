@@ -16,7 +16,7 @@ const PopularInstructors = () => {
     enabled: !isLoading,
     queryKey: ['classes'],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/classes`)
+      const res = await axios.get(`https://server-nine-theta-40.vercel.app/classes`)
       // setIsLoading(false)
       return res.data;
     },
@@ -24,11 +24,11 @@ const PopularInstructors = () => {
 
   // Sort instructors based on the number of students (descending order)
   const sortedInstructors = PoInstructor.sort((a, b) => b.students - a.students);
-// console.log(sortedInstructors)
+// console.log(sortedInstructors) 
   useEffect(() => {
     setInstructor(sortedInstructors);
     setIsLoading(false)
-  }, [sortedInstructors]);
+  }, []);
 
   if (isLoading) {
     return <div>Loading...</div>;

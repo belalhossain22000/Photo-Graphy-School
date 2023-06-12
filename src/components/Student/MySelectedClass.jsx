@@ -12,8 +12,8 @@ import { Link } from 'react-router-dom';
 const MySelectedClass = () => {
     const { user } = useContext(AuthContext)
     const [selectedClasses, setSelectedClasses] = useState([]);
-    const { data, isLoading, error } = useGetData(`http://localhost:5000/selectedClasses/${user?.email}`);
-    // const { data: updateDatas } = useGetData(`http://localhost:5000/classes`);
+    const { data, isLoading, error } = useGetData(`https://server-nine-theta-40.vercel.app/selectedClasses/${user?.email}`);
+    // const { data: updateDatas } = useGetData(`https://server-nine-theta-40.vercel.app/classes`);
     // const stripePromise = loadStripe(`${import.meta.env.VITE_payment_gateway_pk}`);
     useEffect(() => {
         setSelectedClasses(data);
@@ -25,7 +25,7 @@ const MySelectedClass = () => {
         alert("are you sure you want to delete this item")
 
         try {
-            await axios.delete(`http://localhost:5000/selectedClasses/${user?.email}/${itemId}`);
+            await axios.delete(`https://server-nine-theta-40.vercel.app/selectedClasses/${user?.email}/${itemId}`);
             const updatedData = selectedClasses.filter((item) => item._id !== itemId);
             setSelectedClasses(updatedData);
         } catch (error) {
@@ -38,7 +38,7 @@ const MySelectedClass = () => {
         console.log(itemId)
 
         try {
-            const response = await fetch(`http://localhost:5000/makePayment/${itemId}`, {
+            const response = await fetch(`https://server-nine-theta-40.vercel.app/makePayment/${itemId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

@@ -9,10 +9,10 @@ const Classes = () => {
     const { user } = useContext(AuthContext)
     // console.log(user?.email)
 
-    const { data, isLoading, error } = useGetData('http://localhost:5000/classes');
+    const { data, isLoading, error } = useGetData('https://server-nine-theta-40.vercel.app/classes');
     const [dataUser, setDataUser] = useState({})
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://server-nine-theta-40.vercel.app/users/${user?.email}`)
             .then(res => res.json())
             .then(data => setDataUser(data))
     }, [user])
@@ -29,7 +29,7 @@ const Classes = () => {
             return
         }
         const selectedClass = { ...classItem, email: user?.email }
-        fetch('http://localhost:5000/postSelectedClasses', {
+        fetch('https://server-nine-theta-40.vercel.app/postSelectedClasses', {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,

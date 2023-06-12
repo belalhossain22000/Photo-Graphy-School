@@ -42,7 +42,7 @@ function RegistrationPage() {
                         .then(() => {
                             const savedUser = { email: data.email, name: data.name, image: data.photoURL,role:'student' }
 
-                            fetch(`http://localhost:5000/users`, {
+                            fetch(`https://server-nine-theta-40.vercel.app/users`, {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify(savedUser)
@@ -81,8 +81,8 @@ function RegistrationPage() {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
-                const savedUser = { name: user.displayName, email: user.email, image: user.photoURL }
-                fetch("http://localhost:5000/users", {
+                const savedUser = { name: user.displayName, email: user.email, image: user.photoURL,role:'student' }
+                fetch("https://server-nine-theta-40.vercel.app/users", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(savedUser)

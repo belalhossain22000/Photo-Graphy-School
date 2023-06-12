@@ -11,7 +11,7 @@ const ManageClasses = () => {
   };
   
 
-  const { data } = useGetData('http://localhost:5000/classes',headers);
+  const { data } = useGetData('https://server-nine-theta-40.vercel.app/classes',headers);
   const [classes, setClasses] = useState([]);
   const [feedback, setFeedback] = useState('');
 
@@ -21,7 +21,7 @@ const ManageClasses = () => {
 
   const handleApprove = async (classId) => {
     try {
-      await axios.patch(`http://localhost:5000/classes/${classId}`, { status: 'approved' });
+      await axios.patch(`https://server-nine-theta-40.vercel.app/classes/${classId}`, { status: 'approved' });
       setClasses((prevClasses) =>
         prevClasses.map((classItem) =>
           classItem._id === classId ? { ...classItem, status: 'approved' } : classItem
@@ -35,7 +35,7 @@ const ManageClasses = () => {
 
   const handleDeny = async (classId) => {
     try {
-      await axios.patch(`http://localhost:5000/classes/${classId}`, { status: 'denied' });
+      await axios.patch(`https://server-nine-theta-40.vercel.app/classes/${classId}`, { status: 'denied' });
       setClasses((prevClasses) =>
         prevClasses.map((classItem) =>
           classItem._id === classId ? { ...classItem, status: 'denied' } : classItem
@@ -52,7 +52,7 @@ const ManageClasses = () => {
   const sendFeedback = async (id) => {
     alert("are you sure you want to send feedback")
     try {
-      await axios.patch(`http://localhost:5000/classes/${id}`, {feedback:feedback});
+      await axios.patch(`https://server-nine-theta-40.vercel.app/classes/${id}`, {feedback:feedback});
       setClasses((prevClasses) =>
         prevClasses.map((classItem) =>
           classItem._id === id ? { ...classItem, feedback: feedback } : classItem

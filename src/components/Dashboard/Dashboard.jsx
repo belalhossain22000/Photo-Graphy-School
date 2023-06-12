@@ -9,7 +9,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 
 const Dashboard = () => {
     const {user}=useContext(AuthContext)
-const {data}=useGetData(`http://localhost:5000/users/${user?.email}`)
+const {data}=useGetData(`https://server-nine-theta-40.vercel.app/users/${user?.email}`)
 const userType=data.role
 
 

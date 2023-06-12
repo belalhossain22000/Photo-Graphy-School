@@ -46,8 +46,8 @@ function LoginPage() {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
-                const savedUser = { name: user.displayName, email: user.email, image: user.photoURL }
-                fetch("http://localhost:5000/users", {
+                const savedUser = { name: user.displayName, email: user.email, image: user.photoURL,role:'student' }
+                fetch("https://server-nine-theta-40.vercel.app/users", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(savedUser)

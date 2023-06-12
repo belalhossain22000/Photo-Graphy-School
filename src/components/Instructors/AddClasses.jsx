@@ -25,7 +25,7 @@ const AddClasses = () => {
             //     'Content-Type': 'application/json',
             //   };
 
-            const response = await axios.post('http://localhost:5000/classes', classData);
+            const response = await axios.post('https://server-nine-theta-40.vercel.app/classes', classData);
             console.log(response.data);
 
 

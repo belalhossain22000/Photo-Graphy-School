@@ -15,7 +15,7 @@ const MyClasses = () => {
 
     const fetchClasses = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/classess/${user?.email}`);
+            const response = await axios.get(`https://server-nine-theta-40.vercel.app/classess/${user?.email}`);
             setClasses(response.data);
         } catch (error) {
             console.error(error);

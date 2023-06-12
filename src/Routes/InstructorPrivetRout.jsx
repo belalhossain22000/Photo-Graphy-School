@@ -16,7 +16,7 @@ const InstructorPrivateRoute = ({ children }) => {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/users/${user?.email}`);
+      const response = await fetch(`https://server-nine-theta-40.vercel.app/users/${user?.email}`);
       const data = await response.json();
       setUserData(data);
       setDataLoaded(true);

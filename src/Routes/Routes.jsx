@@ -93,7 +93,7 @@ export const router = createBrowserRouter([
             {
                 path: "/dashboard/update-classes/:id",
                 element: <InstructorPrivateRoute><UpdateClasses></UpdateClasses></InstructorPrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/classes/${params.id}`)
+                loader: ({ params }) => fetch(`https://server-nine-theta-40.vercel.app/classes/${params.id}`)
             },
 
 

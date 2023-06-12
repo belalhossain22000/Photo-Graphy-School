@@ -12,7 +12,7 @@ const PopularClasses = () => {
 
     //fetch data
     // useEffect(() => {
-    //     fetch('http://localhost:5000/classes', {
+    //     fetch('https://server-nine-theta-40.vercel.app/classes', {
     //         headers: {
     //             Authorization: `Bearer ${localStorage.getItem('access_token')}`
     //         }
@@ -33,17 +33,12 @@ const PopularClasses = () => {
     const { refetch, data: PoClass = [] } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/classes`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-
-                }
-            })
+            const res = await axios.get(`https://server-nine-theta-40.vercel.app/classes`)
             setIsLoading(false)
             return res.data;
         },
     })
-    // console.log('res from axios', PoClass)
+    console.log('res from axios', PoClass)
 
     const sortedClasses = PoClass.sort((a, b) => b?.students - a?.students);
 

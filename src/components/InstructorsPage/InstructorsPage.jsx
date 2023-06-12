@@ -3,7 +3,7 @@ import useGetData from '../../hooks/useGetData';
 import { motion } from 'framer-motion';
 
 const InstructorsPage = () => {
-  const { data, isLoading, error } = useGetData('http://localhost:5000/instructor');
+  const { data, isLoading, error } = useGetData('https://server-nine-theta-40.vercel.app/instructor');
 
   return (
     <div className="my-20 p-4">

@@ -10,7 +10,7 @@ const stripePromise = loadStripe(`${import.meta.env.VITE_payment_gateway_pk}`);
 
 const CheckOutModal = () => {
     const { user } = useContext(AuthContext)
-    const { data, isLoading, error } = useGetData(`http://localhost:5000/selectedClasses/${user?.email}`);
+    const { data, isLoading, error } = useGetData(`https://server-nine-theta-40.vercel.app/selectedClasses/${user?.email}`);
     const { id } = useParams()
     const filteredData = data.filter((item) => item._id == id)
     // console.log(filteredData[0]?.selectedClasses

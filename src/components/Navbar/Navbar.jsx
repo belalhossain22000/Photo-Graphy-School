@@ -10,7 +10,7 @@ const Navbar = () => {
   const { user, logOut, toggleTheme, theme } = useContext(AuthContext);
 
   const [scrollPosition, setScrollPosition] = useState(0);
-  const { data } = useGetData(`http://localhost:5000/users/${user?.email}`)
+  const { data } = useGetData(`https://server-nine-theta-40.vercel.app/users/${user?.email}`)
   console.log(data)
   useEffect(() => {
     const handleScroll = () => {

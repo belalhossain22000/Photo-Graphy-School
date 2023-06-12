@@ -5,7 +5,7 @@ const AllUsers = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/users',{headers:{
+    fetch('https://server-nine-theta-40.vercel.app/users',{headers:{
       Authorization: `Bearer ${localStorage.getItem('access_token')}`
     }})
       .then((res) => res.json())
@@ -16,7 +16,7 @@ const AllUsers = () => {
 
   const makeAdminRole = (id) => {
     axios
-      .patch(`http://localhost:5000/users/${id}`, { role: 'Admin' })
+      .patch(`https://server-nine-theta-40.vercel.app/users/${id}`, { role: 'Admin' })
       .then((response) => {
         console.log(response.data);
         alert('Admin role created successfully');
@@ -35,7 +35,7 @@ const AllUsers = () => {
 
   const makeInstructorRole = (id) => {
     axios
-      .patch(`http://localhost:5000/users/${id}`, { role: 'Instructor' })
+      .patch(`https://server-nine-theta-40.vercel.app/users/${id}`, { role: 'Instructor' })
       .then((response) => {
         console.log(response.data);
         alert('Instructor role created successfully');
