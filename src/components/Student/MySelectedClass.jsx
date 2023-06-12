@@ -41,31 +41,31 @@ const MySelectedClass = () => {
     };
 
     //handle payment 
-    const handlePayment = async (itemId) => {
-        console.log(itemId)
+    // const handlePayment = async (itemId) => {
+    //     console.log(itemId)
 
-        try {
-            const response = await fetch(`https://server-nine-theta-40.vercel.app/makePayment/${itemId}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                // body: JSON.stringify({ itemId })
-            });
+    //     try {
+    //         const response = await fetch(`https://server-nine-theta-40.vercel.app/makePayment/${itemId}`, {
+    //             method: 'PATCH',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             // body: JSON.stringify({ itemId })
+    //         });
 
-            if (response.ok) {
+    //         if (response.ok) {
 
-                console.log('Payment successful');
-                alert('Payment successful');
-            } else {
-                console.log('Payment failed');
-                alert('Payment failed');
-            }
-        } catch (error) {
-            console.log('Error:', error);
-        }
+    //             console.log('Payment successful');
+    //             alert('Payment successful');
+    //         } else {
+    //             console.log('Payment failed');
+    //             alert('Payment failed');
+    //         }
+    //     } catch (error) {
+    //         console.log('Error:', error);
+    //     }
 
-    };
+    // };
 
 
 
